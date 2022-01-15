@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1700.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "QOTDFSharp", "QOTDFSharp\QOTDFSharp.fsproj", "{7D41D2C4-B0B5-451C-A989-2E00632D0A1E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D41D2C4-B0B5-451C-A989-2E00632D0A1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D41D2C4-B0B5-451C-A989-2E00632D0A1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D41D2C4-B0B5-451C-A989-2E00632D0A1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D41D2C4-B0B5-451C-A989-2E00632D0A1E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A886609D-9A05-43D6-BB5F-0179EC950B05}
+	EndGlobalSection
+EndGlobal
