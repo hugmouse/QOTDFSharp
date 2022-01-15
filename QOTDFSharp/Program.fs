@@ -2,7 +2,6 @@
 open System.Net
 open System.Text
 open System.Net.Sockets
-open System.Threading.Tasks
 
 let IP = "0.0.0.0"
 let PORT = 17
