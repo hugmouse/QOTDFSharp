@@ -5,7 +5,7 @@ open System.Net.Sockets
 open System.Threading.Tasks
 
 let IP = "0.0.0.0"
-let PORT = "17"
+let PORT = 17
 
 let rec forever func =
     func ()
@@ -32,16 +32,16 @@ let writeToSocket (socket: Socket) =
     stream.Dispose()
     socket.Dispose()
 
-let startListening ip port =
+let startListening =
     let ip = IPAddress.Parse IP
-    let listener = new TcpListener(localaddr = ip, port = port)
+    let listener = new TcpListener(localaddr = ip, port = PORT)
     listener.Start()
-    printfn "[startListening] Listening on %A:%A" ip port
+    printfn "[startListening] Listening on %A:%A" ip PORT
 
     forever
     <| fun () -> listener.Server.Accept() |> writeToSocket
 
 [<EntryPoint>]
 let main argv =
-    startListening "0.0.0.0" 8080
+    startListening
     0xDEAFBEEF
