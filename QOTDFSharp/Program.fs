@@ -3,44 +3,48 @@ open System.Net
 open System.Text
 open System.Net.Sockets
 
-let IP = "0.0.0.0"
-let PORT = 17
+type Random with
+    member this.GetItem items =
+        Array.length items |> this.Next |> Array.get items
 
-let rec forever func =
-    func ()
-    forever func
-
-type System.Random with
-    member this.GetItem(items: _ []) = items.[this.Next(items.Length)]
-
-let MessagesOfTheDay =
-    [| "Learn something new today!\n"
-       "Just learn more things\n" |]
-
-let writeToSocket (socket: Socket) =
-    let stream = new NetworkStream(socket)
-    let r = System.Random()
-    let message = Encoding.UTF8.GetBytes(r.GetItem(MessagesOfTheDay))
+let writeToSocket (msgs: string []) (socket: Socket) : Socket =
+    use stream = new NetworkStream(socket)
+    let r = Random()
+    let message = r.GetItem msgs |> Encoding.UTF8.GetBytes
     printfn $"[writeToSocket] sending random quote of the day to {socket.RemoteEndPoint.ToString()}"
 
     try
         stream.Write(message, 0, message.Length)
     with
-    | e -> printfn $"[writeToSocket] An exception occured while perfoming stream.write: {e}"
+    | e -> printfn $"[writeToSocket] An exception occured while performing stream.write: {e}"
 
-    stream.Dispose()
-    socket.Dispose()
+    socket
 
-let startListening =
-    let ip = IPAddress.Parse IP
-    let listener = new TcpListener(localaddr = ip, port = PORT)
+let startListening (msgs: string []) (ip: string) (port: int) =
+    let ip = IPAddress.Parse ip
+    let listener = TcpListener(localaddr = ip, port = port)
     listener.Start()
-    printfn "[startListening] Listening on %A:%A" ip PORT
+    printfn $"[startListening] Listening on {ip}:{port}"
 
-    forever
-    <| fun () -> listener.Server.Accept() |> writeToSocket
+    while true do
+        let socket =
+            listener.Server.Accept() |> writeToSocket msgs
+
+        try
+            socket.Shutdown(SocketShutdown.Both)
+        with
+        | e -> printfn $"An exception occured while trying to close the socket: {e}"
+
+        socket.Close()
 
 [<EntryPoint>]
 let main argv =
-    startListening
+    let MessagesOfTheDay =
+        [| "Learn something new today!\n"
+           "Just learn more things\n" |]
+
+    let IP = "0.0.0.0"
+    let PORT = 17
+
+    startListening MessagesOfTheDay IP PORT
     0xDEAFBEEF
