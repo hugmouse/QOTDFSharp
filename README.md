@@ -6,8 +6,8 @@ RFC865 (Quote of the Day) F# implementation, TCP based, synchronous
 
 ### Example usage
 
-Using `netcat`: ![netcat screenshot example](https://user-images.githubusercontent.com/44648612/149619768-239423a9-3231-4981-9710-b20fc0891ecb.png)
+Using `netcat`: ![netcat screenshot example](https://user-images.githubusercontent.com/44648612/149778519-d29ac3c2-457e-41cf-8214-768ea6e59aef.png)
 
 ### Server logs
 
-![server logs](https://user-images.githubusercontent.com/44648612/149619827-08655c8b-2d64-4777-ba5c-7feaca30c5c0.png)
+![server logs](https://user-images.githubusercontent.com/44648612/149778434-f53708aa-cc7d-4f82-8460-dfcf6cd320ed.png)
